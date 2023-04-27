@@ -1,0 +1,105 @@
+#installing required packeges#
+install.packages('ggplot2')
+install.packages("statar")
+install.packages("dplyr")
+
+#load required libraries#
+library(ggplot2)
+
+#view dataset
+diamond.dataset <- read.csv("C:/Users/Deepen/Downloads/diamond dataset.csv")
+View(diamond.dataset)
+
+#load data into my data#
+mydata=diamond.dataset
+str(mydata)
+
+
+#setting values#
+carat=mydata$carat
+cut=mydata$cut
+color=mydata$color
+clarity=mydata$clarity
+depth=mydata$depth
+table=mydata$table
+price=mydata$price
+x=mydata$x
+y=mydata$y
+z=mydata$z
+
+
+#summerization of data manually by adding values#
+#mean of the data
+mean(carat)
+mean(depth)
+mean(price)
+mean(table)
+mean(x)
+mean(y)
+mean(z)
+
+#median of the data
+median(carat)
+median(depth)
+median(price)
+median(table)
+median(x)
+median(y)
+median(z)
+
+#summerization of the data
+summary(mydata)
+
+#variance of the data
+var(carat)
+var(depth)
+var(price)
+var(table)
+var(x)
+var(y)
+var(z)
+
+#will give table to identfiy no.of outcomes#
+table(clarity)
+table(color)
+table(cut)
+
+#data-Barplot
+barplot(table(clarity))
+barplot(table(color))
+barplot(table(cut))
+
+#correlation of carat and price#
+cor(carat,price)
+
+#correlation of carat and price by pearson#
+cor.test(carat, price, method = "pearson")
+
+#multiple regression#
+model <- lm(price~carat+depth, data = mydata)
+print(model)
+
+#create scatterplot of carat vs. price, using cut as color variable
+ggplot(data=diamonds, aes(x=carat, y=price, color=cut)) + 
+  geom_point()
+
+#create boxplot of price, grouped by cut
+ggplot(data=diamonds, aes(x=cut, y=price)) + 
+  geom_boxplot(fill="steelblue")
+
+#create boxplot of price, grouped by colour
+ggplot(data=diamonds, aes(x=color, y=price)) + 
+  geom_boxplot(fill="steelblue")
+
+#create boxplot of price, grouped by clarity
+ggplot(data=diamonds, aes(x=clarity, y=price)) + 
+  geom_boxplot(fill="steelblue")
+
+#histogram of the data
+hist(carat)
+hist(depth)
+hist(price)
+hist(table)
+hist(x)
+hist(y)
+hist(z)
